@@ -14,7 +14,7 @@ def run(*args, echo=True, **kwargs):
     if len(args) == 1 and " " in args[0]:
         args = shlex.split(args[0])
     cmd = " ".join(args)
-    print(Fore.GREEN + cmd + Style.RESET_ALL)
+    print(" $ " + Fore.GREEN + cmd + Style.RESET_ALL)
     out = sp.check_output(args, stderr=sys.stderr, **kwargs).decode().rstrip()
     if echo:
         print(out)

@@ -25,7 +25,8 @@ def get_venv_path(path: Path) -> Path:
 
 def activate_venv(path: Path):
     # skip if the user goes down and comes back to the same env
-    if path.name == "xsh-src":
+    excluded = get_env("XSH_AVOX_EXCLUDED_PATHS", set())
+    if path.name in excluded:
         return
     if venv := PROJ_DIR_VENV_MAP.get(path):
         current_env = get_env("VIRTUAL_ENV")

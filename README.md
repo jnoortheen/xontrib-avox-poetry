@@ -23,6 +23,9 @@ xontrib load avox_poetry
 # name of the venv folder. If found will activate it.
 # if set to None then local folder activation will not work.
 $XSH_AVOX_VENV_NAME = ".venv"
+
+# exclude activation of certain paths by setting
+$XSH_AVOX_EXCLUDED_PATHS = {"xsh-src"}
 ```
 
 ## Credits
