@@ -2,7 +2,7 @@ import builtins
 import typing as tp
 from pathlib import Path
 
-from xontrib.powerline3.fields import deep_get
+from .utils import deep_get
 
 
 def run(*args) -> str:
