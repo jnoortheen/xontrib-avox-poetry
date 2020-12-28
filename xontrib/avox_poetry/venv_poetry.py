@@ -54,9 +54,11 @@ def find_venv_path(cwd: Path) -> tp.Optional[Path]:
     for env in (
         Path(builtins.__xonsh__.env.get("VIRTUALENV_HOME", "~/.virtualenvs"))
         .expanduser()
-        .glob("*")
+        .iterdir()
     ):
-        if env.name.startswith(proj_name):
+        if env.name.startswith(proj_name) or env.name.startswith(
+            proj_name.replace("_", "-")
+        ):
             venvs.append(env)
 
     if len(venvs) == 1:
