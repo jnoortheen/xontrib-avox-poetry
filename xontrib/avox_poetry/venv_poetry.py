@@ -41,6 +41,14 @@ def find_project_name(proj_file: Path) -> tp.Optional[str]:
 # @funcy.print_durations
 
 
+def iter_venvs():
+    yield from (
+        Path(builtins.__xonsh__.env.get("VIRTUALENV_HOME", "~/.virtualenvs"))
+        .expanduser()
+        .iterdir()
+    )
+
+
 def find_venv_path(cwd: Path) -> tp.Optional[Path]:
     proj_toml = cwd.joinpath("pyproject.toml")
     if not proj_toml.exists():
@@ -51,11 +59,7 @@ def find_venv_path(cwd: Path) -> tp.Optional[Path]:
         return
 
     venvs = []
-    for env in (
-        Path(builtins.__xonsh__.env.get("VIRTUALENV_HOME", "~/.virtualenvs"))
-        .expanduser()
-        .iterdir()
-    ):
+    for env in iter_venvs():
         if env.name.startswith(proj_name) or env.name.startswith(
             proj_name.replace("_", "-")
         ):

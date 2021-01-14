@@ -4,7 +4,7 @@ from typing import Optional
 
 from xontrib.voxapi import Vox
 
-from .venv_poetry import find_venv_path
+from .venv_poetry import find_venv_path, iter_venvs
 from .utils import get_env
 
 
@@ -15,11 +15,19 @@ def get_active_env_name() -> Optional[str]:
     return builtins.__xonsh__.env["PROMPT_FIELDS"]["env_name"]()
 
 
+def has_venv_with_same_name(current_dir_name: str) -> Path:
+    for env in iter_venvs():
+        if env.name == current_dir_name:
+            return env
+
+
 def get_venv_path(path: Path) -> Path:
     venv = path / get_env("XSH_AVOX_VENV_NAME", ".venv")
     if venv.exists():
         return venv
-
+    venv = has_venv_with_same_name(path.name)
+    if venv:
+        return venv
     return find_venv_path(path)
 
 
