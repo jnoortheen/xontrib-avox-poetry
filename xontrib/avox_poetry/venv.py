@@ -36,7 +36,9 @@ def activate_venv(path: Path):
     excluded = get_env("XSH_AVOX_EXCLUDED_PATHS", set())
     if path.name in excluded:
         return
-    if venv := PROJ_DIR_VENV_MAP.get(path):
+
+    venv = PROJ_DIR_VENV_MAP.get(path)
+    if venv:
         current_env = get_env("VIRTUAL_ENV")
         if current_env == venv:
             return
