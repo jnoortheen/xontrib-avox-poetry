@@ -34,29 +34,30 @@ def find_project_name(proj_file: Path) -> tp.Optional[str]:
     return deep_get(proj, "tool", "poetry", "name")
 
 
-# durations
-# plain-function: ~40ms
-# using subprocess: ~760ms
-# using xonsh builtins: ~640ms
-# @funcy.print_durations
 
 
-def _iter_venvs():
+def iter_venvs():
     yield from (
         Path(builtins.__xonsh__.env.get("VIRTUALENV_HOME", "~/.virtualenvs"))
         .expanduser()
         .iterdir()
     )
 
-def iter_venvs(proj_name):
-    if env.name.startswith(proj_name) or env.name.startswith(
-            proj_name.replace("_", "-")
-    ):
-        yield env
+
+def iter_venvs_proj(proj_name):
+    for env in iter_venvs():
+        if env.name.startswith(proj_name) or env.name.startswith(
+                proj_name.replace("_", "-")
+        ):
+            yield env
 
 
 
 def find_venv_path(cwd: Path) -> tp.Optional[Path]:
+    # durations
+    # plain-function: ~40ms
+    # using subprocess: ~760ms
+    # using xonsh builtins: ~640ms
     proj_toml = cwd.joinpath("pyproject.toml")
     if not proj_toml.exists():
         return None
@@ -65,7 +66,7 @@ def find_venv_path(cwd: Path) -> tp.Optional[Path]:
     if not proj_name:
         return
 
-    venvs = list(iter_venvs(proj_name))
+    venvs = list(iter_venvs_proj(proj_name))
 
     if len(venvs) == 1:
         return venvs[0]
