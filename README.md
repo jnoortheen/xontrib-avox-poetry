@@ -1,6 +1,11 @@
-<p align="center">
-auto-activate venv as one cd into a poetry project folder.
+# Overview
+
+auto-activate venv as one cd into a poetry project folder. 
+
+<p align="center">  
+If you like the template click ⭐ on the repo.
 </p>
+
 
 ## Installation
 
