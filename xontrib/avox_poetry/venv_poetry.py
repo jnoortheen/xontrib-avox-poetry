@@ -34,23 +34,20 @@ def find_project_name(proj_file: Path) -> tp.Optional[str]:
     return deep_get(proj, "tool", "poetry", "name")
 
 
-
-
 def iter_venvs():
-    yield from (
-        Path(builtins.__xonsh__.env.get("VIRTUALENV_HOME", "~/.virtualenvs"))
-        .expanduser()
-        .iterdir()
-    )
+    path = Path(
+        builtins.__xonsh__.env.get("VIRTUALENV_HOME", "~/.virtualenvs")
+    ).expanduser()
+    if path.exists():
+        yield from path.iterdir()
 
 
 def iter_venvs_proj(proj_name):
     for env in iter_venvs():
         if env.name.startswith(proj_name) or env.name.startswith(
-                proj_name.replace("_", "-")
+            proj_name.replace("_", "-")
         ):
             yield env
-
 
 
 def find_venv_path(cwd: Path) -> tp.Optional[Path]:
