@@ -20,6 +20,12 @@ xontrib load avox_poetry
 ## Configuration
 
 ```python
+
+# If found, the env name is searched inside the $VIRTUALENV_HOME 
+# rather than invoking `poetry env info -p` command every time `cd` happens
+# It is faster setting this variable. It will also be used by poetry.
+$VIRTUALENV_HOME = "~/.virtualenvs"
+
 # name of the venv folder. If found will activate it.
 # if set to None then local folder activation will not work.
 $XSH_AVOX_VENV_NAME = ".venv"
