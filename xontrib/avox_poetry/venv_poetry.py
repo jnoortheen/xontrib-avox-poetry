@@ -1,7 +1,6 @@
-import builtins
 import typing as tp
 from pathlib import Path
-
+from xonsh.built_ins import XSH
 from .utils import deep_get
 
 
@@ -35,9 +34,7 @@ def find_project_name(proj_file: Path) -> tp.Optional[str]:
 
 
 def iter_venvs():
-    path = Path(
-        builtins.__xonsh__.env.get("VIRTUALENV_HOME", "~/.virtualenvs")
-    ).expanduser()
+    path = Path(XSH.env.get("VIRTUALENV_HOME", "~/.virtualenvs")).expanduser()
     if path.exists():
         yield from path.iterdir()
 
