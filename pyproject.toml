@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "xontrib-avox-poetry"
-version = "0.2.5"
+version = "0.2.6"
 description = "auto-activate venv as one cd into a poetry project"
 authors = ["Noortheen Raja NJ <jnoortheen@gmail.com>"]
 
