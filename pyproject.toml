@@ -31,16 +31,15 @@ Code = "https://github.com/jnoortheen/xontrib-avox-poetry"
 
 
 [tool.poetry.dependencies]
-python = ">=3.6"
-xonsh = ">=0.9.20"
-tomlkit = "^0.7.2"
+python = ">=3.8"
+xonsh = ">=0.12.5"
+tomli = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.0" 
 colorama = "*"
 arger = "*"
-black = { version = "^20.8b1", allow-prereleases = true } 
-yapf = "^0.30.0" # can be used to format .xsh files with the special rules
+black = { version = "*", allow-prereleases = true }
 
 [tool.poetry.plugins."xonsh.xontribs"]
 "avox_poetry" = "xontrib_avox_poetry.loader"

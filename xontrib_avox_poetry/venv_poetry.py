@@ -26,9 +26,12 @@ def poetry_venv_path(pkg_name: str, cwd: str) -> str:
 
 
 def find_project_name(proj_file: Path) -> tp.Optional[str]:
-    import tomlkit
+    try:
+        import tomllib
+    except ImportError:
+        import tomli as tomllib
 
-    proj = tomlkit.parse(proj_file.read_text())
+    proj = tomllib.loads(proj_file.read_text())
 
     return deep_get(proj, "tool", "poetry", "name")
 
