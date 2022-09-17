@@ -1,3 +1,5 @@
+import contextlib
+
 import typing as tp
 from pathlib import Path
 from xonsh.built_ins import XSH
@@ -68,9 +70,7 @@ def find_venv_path(cwd: Path) -> tp.Optional[Path]:
     if len(venvs) == 1:
         return venvs[0]
 
-    if not venvs:
-        return None
-
-    # if there are multiple venv for the same project then resolve it actually
-    # using poetry itself
-    return Path(run("poetry", "env", "info", "-p"))
+    with contextlib.suppress(Exception):
+        # if there are multiple venv for the same project then resolve it actually
+        # using poetry itself
+        return Path(run("poetry", "env", "info", "-p"))

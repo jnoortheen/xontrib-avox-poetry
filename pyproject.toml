@@ -36,9 +36,7 @@ xonsh = ">=0.12.5"
 tomli = "*"
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.0" 
-colorama = "*"
-arger = "*"
+pytest = "*"
 black = { version = "*", allow-prereleases = true }
 
 [tool.poetry.plugins."xonsh.xontribs"]
