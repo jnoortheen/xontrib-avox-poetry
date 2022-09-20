@@ -4,11 +4,9 @@ import typing as tp
 from pathlib import Path
 from xonsh.built_ins import XSH
 from .utils import deep_get
-
+from xonsh.lib.subprocess import check_output
 
 def run(*args) -> str:
-    from subprocess import check_output
-
     return check_output(args).decode().strip()
 
 
@@ -70,7 +68,4 @@ def find_venv_path(cwd: Path) -> tp.Optional[Path]:
     if len(venvs) == 1:
         return venvs[0]
 
-    with contextlib.suppress(Exception):
-        # if there are multiple venv for the same project then resolve it actually
-        # using poetry itself
-        return Path(run("poetry", "env", "info", "-p"))
+    return Path(run("poetry", "env", "info", "-p"))
