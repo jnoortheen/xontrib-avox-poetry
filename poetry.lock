@@ -190,7 +190,7 @@ test = ["coverage (>=5.3.1)", "prompt-toolkit (>=3.0.29)", "pygments (>=2.2)", "
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8"
-content-hash = "6d74b0f814484fc9b890fdbcb9badfb15c00d49cdcf6534525a21fb8b135fdd0"
+content-hash = "066368a366b21985d96fd81168f67071f085dd8bfca0646f83f2fec2310cbd59"
 
 [metadata.files]
 attrs = [

@@ -37,7 +37,7 @@ tomli = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
-black = { version = "*", allow-prereleases = true }
+black = { version = "*" }
 
 [tool.poetry.plugins."xonsh.xontribs"]
 "avox_poetry" = "xontrib_avox_poetry.loader"
